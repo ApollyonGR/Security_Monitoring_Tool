@@ -2,4 +2,12 @@
 
 !.gitignore
 
+!analysis.c
+!analysis.h
+!fileio.c
+!fileio.h
+!security_event.c
+!security_event.h
 !main.c
+!security.log
+!README.md
