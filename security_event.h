@@ -22,6 +22,4 @@ int loadEvents(const char *filename, SecurityEvent events[], int totalEvents);
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
 
-
-
 #endif 
