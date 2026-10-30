@@ -11,13 +11,16 @@ int MainMenu(void){
         "\n"                                   );
 
     while(1){
-
-        printf( "1) Option 1\n"
-                "2) Option 2\n"
-                "3) Option 3\n");
+        printf( "1. Load Security Log\n"
+                "2. Display All Events\n"
+                "3. Search Events\n"
+                "4. Analyze Security Events"
+                "5. Display Security Alerts"
+                "6. Generate Security Report"
+                "7. Exit");
         printf("\nPlease select option: ");
         scanf("%d", &choice);
-        
+        printf("Select which action you'd like to take:\n");
         switch(choice) {
             case 1:
                 printf("\nYou picked option 1\n");
