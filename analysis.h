@@ -1,3 +1,6 @@
+#ifndef ANALYSIS_H
+#define ANALYSIS_H
+
 #include "security_event.h"
 
 int countEventsByType(SecurityEvent events[], int totalEvents, const char *eventType);
@@ -12,3 +15,5 @@ int findHighestSeverity(SecurityEvent events[], int totalEvents);
 int countHighestSeverity(SecurityEvent events[], int totalEvents);
 
 void displaySummary(SecurityEvent events[], int totalEvents);
+
+#endif
