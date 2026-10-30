@@ -15,10 +15,6 @@ typedef struct {
     int severity;
 } SecurityEvent;
 
-// Passing the events[] struct array for each function prevents extern usage
-// Also just good practice from what I read online
-int loadEvents(const char *filename, SecurityEvent events[], int totalEvents);
-
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
 
