@@ -31,6 +31,7 @@ int MainMenu(){
 int main(void){
     SecurityEvent events[MAX_EVENTS];
     int totalEvents = 0;
+    bool running = true;
     bool fileLoaded = false;
     int mainMenuChoice = 0;
     
@@ -38,7 +39,7 @@ int main(void){
            "  CYBR 310 Security Monitoring Tool  \n" 
            "=====================================\n");
 
-    while(1){
+    while(running == true){
         mainMenuChoice = MainMenu(); 
         switch(mainMenuChoice){
             case 1:
@@ -50,8 +51,11 @@ int main(void){
                 break;
             case 2:
                 if (fileLoaded == true) displayEvents(events, MAX_EVENTS);
-                else printf("\nError: No security log loaded\n\n");
+                else printf("Error: No security log loaded\n");
                 break;
+            case 7:
+                printf("\nExiting...\n");
+                running = false;
         }
     }
     return 0;
