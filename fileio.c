@@ -19,7 +19,6 @@ int loadEvents(const char *filename, SecurityEvent events[], int totalEvents){
                 events[i].accountName, &events[i].severity) == 4) {
         i++;
     }
-    printf("From %s: %d event(s) loaded!\n\n",filename, i);
     fclose(fptr);
     return i; // returns the total number of events loaded for use in main.c
 }
