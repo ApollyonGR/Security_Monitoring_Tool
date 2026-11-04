@@ -56,6 +56,10 @@ int main(void){
             case 7:
                 printf("\nExiting...\n");
                 running = false;
+                break;
+            default:
+                printf("\nErr: not valid option\n\n");
+                break;
         }
     }
     return 0;
@@ -64,22 +68,22 @@ int main(void){
 // gcc -Wall -Wextra main.c analysis.c fileio.c security_event.c -o main && ./main  
 
 
-//     case 3:
-//         printf("\nYou picked option 3\n");
-//         return 3;
-//     case 4:
-//         printf("\nYou picked option 4\n");
-//         return 4;
-//     case 5:
-//         printf("\nYou picked option 5\n");
-//         return 5;
-//     case 6: 
-//         printf("\nYou picked option 6\n");
-//         return 6;
-//     case 7:
-//         printf("\nExiting...\n");
-//         return 0;
-//     default:
-//         printf("\nErr: not valid option\n\n");
-//         break;
+// case 3:
+//     printf("\nYou picked option 3\n");
+//     return 3;
+// case 4:
+//     printf("\nYou picked option 4\n");
+//     return 4;
+// case 5:
+//     printf("\nYou picked option 5\n");
+//     return 5;
+// case 6: 
+//     printf("\nYou picked option 6\n");
+//     return 6;
+// case 7:
+//     printf("\nExiting...\n");
+//     return 0;
+// default:
+//     printf("\nErr: not valid option\n\n");
+//     break;
 // }
