@@ -3,6 +3,6 @@
 
 #include "security_event.h"
 int loadEvents(const char *filename, SecurityEvent events[], int totalEvents);
-int genereateReport( const char *filename, SecurityEvent events[], int count);
+int generateReport( const char *filename, SecurityEvent events[], int count);
 
 #endif
