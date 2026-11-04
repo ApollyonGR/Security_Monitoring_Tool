@@ -11,8 +11,7 @@ Figure out why it loops infinitely when I type a letter
 Make it so choosing an option like 2 or 3 will bring you into a seperate menu, and ask you to "Press enter to return to main menu"
 */
 
-int MainMenu(void){
-    SecurityEvent events[MAX_EVENTS];
+int MainMenu(SecurityEvent events[], int totalEvents){
     int choice;
     static bool fileLoaded = false;
 
@@ -35,10 +34,13 @@ int MainMenu(void){
         switch(choice) {
             case 1:
                 // Ensures loadEvents completes successfully so displayEvents doesn't read from random memory if a bad filename is given.
-                if (loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS) != -1) fileLoaded = true;
+                if (loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS) != -1){
+                    printf("%d event(s) loaded!\n\n", totalEvents);
+                    fileLoaded = true;
+                }
                 break;
             case 2:
-                if (fileLoaded ==  true) displayEvents(events, MAX_EVENTS);
+                if (fileLoaded == true) displayEvents(events, MAX_EVENTS);
                 else printf("\nError: No security log loaded\n\n");
                 break;
             case 3:
@@ -64,9 +66,11 @@ int MainMenu(void){
 }
 
 int main(void){
-
-    int returnValue = MainMenu();
-    printf("%d\n", returnValue);
-
+    SecurityEvent events[MAX_EVENTS];
+    int totalEvents = loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS);
+    
+    MainMenu(events, totalEvents);
     return 0;
 }
+
+// gcc -Wall -Wextra main.c analysis.c fileio.c security_event.c -o main && ./main  
