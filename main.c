@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#include "security_event.h"
-#include "analysis.h"
 #include "fileio.h"
+#include "analysis.h"
+#include "security_event.h"
 
 /*
 Figure out why it loops infinitely when I type a letter
+Make it so choosing an option like 2 or 3 will bring you into a seperate menu, and ask you to "Press enter to return to main menu"
 */
 
 int MainMenu(void){
     SecurityEvent events[MAX_EVENTS];
-    int total = loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS);
     int choice;
+    static bool fileLoaded = false;
 
     printf("\n"
         "=====================================\n"
@@ -30,15 +32,15 @@ int MainMenu(void){
                 "7. Exit\n");
         printf("\nPlease select option: ");
         scanf("%d", &choice);
-        printf("Select which action you'd like to take:\n");
         switch(choice) {
             case 1:
-                printf("\nYou picked option 1\n");
-                loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS);
+                // Ensures loadEvents completes successfully so displayEvents doesn't read from random memory if a bad filename is given.
+                if (loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS) != -1) fileLoaded = true;
                 break;
             case 2:
-                printf("\nYou picked option 2\n");
-                return 2;
+                if (fileLoaded ==  true) displayEvents(events, MAX_EVENTS);
+                else printf("\nError: No security log loaded\n\n");
+                break;
             case 3:
                 printf("\nYou picked option 3\n");
                 return 3;
