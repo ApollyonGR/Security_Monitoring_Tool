@@ -14,7 +14,7 @@ int loadEvents(const char *filename, SecurityEvent events[], int totalEvents){
     int i = 0; // Counter 
 
     // while each line has 4 whitespace-separated values
-    while (i < MAX_EVENTS && fscanf(fptr, "%24s %15s %9s %d", 
+    while (i < totalEvents && fscanf(fptr, "%24s %15s %9s %d", 
                 events[i].eventType, events[i].eventSource,
                 events[i].accountName, &events[i].severity) == 4) {
         i++;
