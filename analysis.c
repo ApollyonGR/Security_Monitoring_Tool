@@ -1,4 +1,5 @@
 #include "security_event.h"
+#include <string.h>
 
 int countEventsByType(SecurityEvent events[], int totalEvents, const char *eventType) {
     int count = 0;
