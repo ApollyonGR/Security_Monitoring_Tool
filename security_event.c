@@ -46,3 +46,47 @@ void displayEvents(SecurityEvent events[], int totalEvents) {
                events[i].severity);
     }
 }
+
+int SearchMenu(){
+    printf("\n==============="
+           "\n  Search Menu  " 
+           "\n===============\n");
+
+    int choice;
+    printf( "\n1. Search by Event Type"
+            "\n2. Search by Event Source"
+            "\n3. Search by Event Severity"
+            "\n4. Search by Account Name"
+            "\n5. Main Menu\n");
+
+    printf("\nPlease select option: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+int handleSearchMenuChoice(int searchMenuChoice){
+    while(1){
+    switch(searchMenuChoice){
+        case 1:
+            printf("\nYou selected choice 1!\n");
+            break;
+        case 2:
+            printf("\nYou selected choice 2!\n");
+            break;
+        case 3:
+            printf("\nYou selected choice 3!\n");
+            break;
+        case 4:
+            printf("\nYou selected choice 4!\n");
+            break;
+        case 5:
+            printf("\nExiting...\n");
+            return 5;
+        default:
+            printf("\nError: Please enter a valid choice\n");
+            break;
+    
+        }
+    }
+    return 0;
+}
