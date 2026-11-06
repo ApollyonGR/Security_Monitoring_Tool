@@ -16,4 +16,6 @@ int countHighestSeverity(SecurityEvent events[], int totalEvents);
 
 void displaySummary(SecurityEvent events[], int totalEvents);
 
+int AnalyzeMenu();
+
 #endif

@@ -1,5 +1,6 @@
-#include "security_event.h"
 #include <string.h>
+#include <stdio.h>
+#include "security_event.h"
 
 int countEventsByType(SecurityEvent events[], int totalEvents, const char *eventType) {
     int count = 0;
@@ -64,4 +65,24 @@ int countHighestSeverity(SecurityEvent events[], int totalEvents){
         }
     }
     return count;
+}
+
+int AnalyzeMenu(){
+    printf("\n================="
+           "\n  Analysis Menu  " 
+           "\n=================\n");
+           
+    int choice;
+    printf( "\n1. Count Malware Incidents"
+            "\n2. Count Phishing Incidents"
+            "\n3. Count Port Scan Incidents"
+            "\n4. Count Failed Login Incidents"
+            "\n5. Count Unauthorized Access Incidents"
+            "\n6. Count Total Critical Events"
+            "\n7. Count Highest Severity Events"
+            "\n8. Main Menu\n");
+
+    printf("\nPlease select option: ");
+    scanf("%d", &choice);
+    return choice;
 }
