@@ -54,7 +54,7 @@ int main(void){
             case 3: 
                 if (fileLoaded == true){
                     int searchMenuChoice = SearchMenu();
-                    handleSearchMenuChoice(searchMenuChoice);
+                    handleSearchMenuChoice(searchMenuChoice, events);
                 } else {
                     printf("Error: No security log loaded\n");
                 }
