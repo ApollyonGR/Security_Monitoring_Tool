@@ -19,6 +19,8 @@ void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
 
 int SearchMenu();
-int handleSearchMenuChoice(int searchMenuChoice);
+int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]);
+
+int searchByEventType(SecurityEvent events[], int count, char target[]);
 
 #endif 

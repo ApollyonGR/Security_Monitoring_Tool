@@ -61,14 +61,23 @@ int SearchMenu(){
 
     printf("\nPlease select option: ");
     scanf("%d", &choice);
+
+    // Removes \n for fgets()
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
     return choice;
 }
 
-int handleSearchMenuChoice(int searchMenuChoice){
+int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
     while(1){
     switch(searchMenuChoice){
         case 1:
-            printf("\nYou selected choice 1!\n");
+            printf("\nPlease enter the event type you'd like to search (e.g PORT_SCAN): ");
+            char target[MAX_EVENT_LENGTH];
+            fgets(target, sizeof(target), stdin);
+            target[strcspn(target, "\n")] = '\0';
+            searchByEventType(events, MAX_EVENTS, target);
             break;
         case 2:
             printf("\nYou selected choice 2!\n");
@@ -89,4 +98,25 @@ int handleSearchMenuChoice(int searchMenuChoice){
         }
     }
     return 0;
+}
+
+int searchByEventType(SecurityEvent events[], int count, char target[]){
+    int matches = 0;
+
+    if (target == NULL){
+        printf("\nError: Invalid event type\n");
+        return -1;
+    }
+
+    for (int i = 0; i < count; i++){
+        if (strcmp(events[i].eventType, target) == 0){
+            matches++;
+            printf("\nMatch %d: Event Type: %s IP: %s Username: %s", 
+                matches, target, events[i].eventSource, events[i].accountName);
+        }
+    }
+    if (matches == 0){
+        printf("No matches found\n");
+    }
+    return matches;
 }
