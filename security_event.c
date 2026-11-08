@@ -62,7 +62,7 @@ int SearchMenu(){
     printf("\nPlease select option: ");
     scanf("%d", &choice);
 
-    // Removes \n for fgets()
+    // removes the \n from input buffer so fgets() doesn't automatically run the first time
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
@@ -71,33 +71,36 @@ int SearchMenu(){
 
 int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
     while(1){
-    switch(searchMenuChoice){
-        case 1:
-            printf("\nPlease enter the event type you'd like to search (e.g PORT_SCAN): ");
-            char target[MAX_EVENT_LENGTH];
-            fgets(target, sizeof(target), stdin);
-            target[strcspn(target, "\n")] = '\0';
-            searchByEventType(events, MAX_EVENTS, target);
-            break;
-        case 2:
-            printf("\nYou selected choice 2!\n");
-            break;
-        case 3:
-            printf("\nYou selected choice 3!\n");
-            break;
-        case 4:
-            printf("\nYou selected choice 4!\n");
-            break;
-        case 5:
-            printf("\nExiting...\n");
-            return 5;
-        default:
-            printf("\nError: Please enter a valid choice\n");
-            break;
-    
+        switch(searchMenuChoice){
+            case 1:
+                printf("\nPlease enter the event type you'd like to search (e.g PORT_SCAN), or type exit to return: ");
+                char target[MAX_EVENT_LENGTH];
+                fgets(target, sizeof(target), stdin);
+                target[strcspn(target, "\n")] = '\0';
+                if (strcmp(target, "exit") != 0){
+                    printf("\n"); // For ease of reading
+                    searchByEventType(events, MAX_EVENTS, target);
+                    break;
+                } else {
+                    return 0;
+                }
+            case 2:
+                printf("\nYou selected choice 2!\n");
+                break;
+            case 3:
+                printf("\nYou selected choice 3!\n");
+                break;
+            case 4:
+                printf("\nYou selected choice 4!\n");
+                break;
+            case 5:
+                printf("\nExiting...\n");
+                return 5;
+            default:
+                printf("\nError: Please enter a valid choice\n");
+                break;
         }
     }
-    return 0;
 }
 
 int searchByEventType(SecurityEvent events[], int count, char target[]){
@@ -111,12 +114,12 @@ int searchByEventType(SecurityEvent events[], int count, char target[]){
     for (int i = 0; i < count; i++){
         if (strcmp(events[i].eventType, target) == 0){
             matches++;
-            printf("\nMatch %d: Event Type: %s IP: %s Username: %s", 
-                matches, target, events[i].eventSource, events[i].accountName);
+            printf("Event %d: %s, %s, %s\n", 
+                i, target, events[i].eventSource, events[i].accountName);
         }
     }
     if (matches == 0){
-        printf("No matches found\n");
+        printf("Match not found, no matching events present or invalid event type\n");
     }
     return matches;
 }
