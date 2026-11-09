@@ -85,7 +85,7 @@ int pnp(const char *prompt, char *dest, size_t size)
     return strcmp(dest, "q") != 0; // returns one if it's a search term, or 0 if it's q
 }
 
-int handleSearchMenuChoice(SecurityEvent events[], int totalEvents) {
+int handleSearchMenu(SecurityEvent events[], int totalEvents) {
     char target[MAX_EVENT_LENGTH];
     while (1)
     {

@@ -37,7 +37,7 @@ int main(void){
     SecurityEvent events[MAX_EVENTS];
     int totalEvents = 0;
     int running = 1;
-    bool fileLoaded = false;
+    int fileLoaded = 0;
     
     while(running == 1){
         int mainMenuChoice = MainMenu(); 
@@ -46,25 +46,25 @@ int main(void){
                 totalEvents = loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS);
                 if (totalEvents != -1){
                     printf("\n%d event(s) loaded!\n", totalEvents);
-                    fileLoaded = true;
+                    fileLoaded = 1;
                 }
                 break;
 
             case 2:
-                if (fileLoaded == true) displayEvents(events, totalEvents);
+                if (fileLoaded == 1) displayEvents(events, totalEvents);
                 else printf("\nError: No security log loaded\n");
                 break;
 
             case 3: 
-                if (fileLoaded == true) handleSearchMenuChoice(events, totalEvents);
+                if (fileLoaded == 1) handleSearchMenu(events, totalEvents);
                 else {
                     printf("\nError: No security log loaded\n");
                 }
                 break;
 
             case 4: 
-                if (fileLoaded == true){
-                    // handleAnalyzeMenuChoice(analyzeMenuChoice, events);
+                if (fileLoaded == 1){
+                    // handleAnalyzeMenu(analyzeMenuChoice, events);
                 } else printf("\nError: No security log loaded\n");
                 break;
 
