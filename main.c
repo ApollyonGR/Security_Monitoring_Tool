@@ -15,9 +15,9 @@ Add search functionality
 int MainMenu(){
     int choice;
     
-    printf("=====================================\n"
-           "  CYBR 310 Security Monitoring Tool  \n" 
-           "=====================================\n");
+    printf("\n=====================================\n"
+             "  CYBR 310 Security Monitoring Tool  \n" 
+             "=====================================\n");
 
     printf( "\n1. Load Security Log"
             "\n2. Display All Events"
