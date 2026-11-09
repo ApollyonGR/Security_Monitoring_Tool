@@ -73,7 +73,7 @@ int main(void){
                 break;
 
             default:
-                printf("\nError: not valid option\n\n");
+                printf("\nError: not valid option\n");
                 break;
         }
     }
