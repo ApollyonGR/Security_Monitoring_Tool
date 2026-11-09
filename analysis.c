@@ -3,7 +3,7 @@
 #include "helperFunctions.h"
 #include "security_event.h"
 
-int countEventsByType(SecurityEvent events[], int totalEvents, const char *eventType) {
+int countEventsByParameter(SecurityEvent events[], int totalEvents, const char *eventType) {
     int count = 0;
     for (int i = 0; i < totalEvents; i++){
         // If the event strings are identical
@@ -14,25 +14,6 @@ int countEventsByType(SecurityEvent events[], int totalEvents, const char *event
     return count;
 }
 
-int countFailedLogins(SecurityEvent events[], int totalEvents){
-    return countEventsByType(events, totalEvents, "FAILED_LOGIN");
-}
-
-int countPortScanEvents(SecurityEvent events[], int totalEvents){
-    return countEventsByType(events, totalEvents, "PORT_SCAN");  
-}
-
-int countUAEvents(SecurityEvent events[], int totalEvents){
-    return countEventsByType(events, totalEvents, "UNAUTHORIZED_ACCESS");  
-}
-
-int countMalwareEvents(SecurityEvent events[], int totalEvents){
-    return countEventsByType(events, totalEvents, "MALWARE");  
-}
-
-int countPhishingEvents(SecurityEvent events[], int totalEvents){
-    return countEventsByType(events, totalEvents, "PHISHING");  
-}
 
 int countCriticalEvents(SecurityEvent events[], int totalEvents){
     int critical = 0;
@@ -97,23 +78,23 @@ int handleAnalysisMenu(SecurityEvent events[], int totalEvents) {
         switch (analysisMenuChoice)
         {
         case 1:
-            printf("\n%d matches found!\n", countMalwareEvents(events, totalEvents));
+            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "MALWARE"));
             break;
 
         case 2:
-            printf("\n%d matches found!\n", countPhishingEvents(events, totalEvents));
+            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "PHISHING"));
             break;
 
         case 3:
-            printf("\n%d matches found!\n", countPortScanEvents(events, totalEvents));
+            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
             break;
 
         case 4:
-            printf("\n%d matches found!\n", countFailedLogins(events, totalEvents));
+            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
             break;
         
         case 5:
-            printf("\n%d matches found!\n", countUAEvents(events, totalEvents));
+            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS"));
             break;
         
         case 6:
