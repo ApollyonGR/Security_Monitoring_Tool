@@ -17,6 +17,8 @@ int loadEvents(const char *filename, SecurityEvent events[], int totalEvents){
     while (i < totalEvents && fscanf(fptr, "%24s %15s %9s %d", 
                 events[i].eventType, events[i].eventSource,
                 events[i].accountName, &events[i].severity) == 4) {
+        
+        events[i].id = i + 1;
         i++;
     }
     fclose(fptr);

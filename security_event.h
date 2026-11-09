@@ -9,6 +9,7 @@
 #define LOG_RELATIVE_FILEPATH "security.log"
 
 typedef struct {
+    int id;
     char eventType[MAX_EVENT_LENGTH];
     char eventSource[MAX_IP_ADDRESS_LENGTH];
     char accountName[MAX_USERNAME_LENGTH];
