@@ -85,35 +85,35 @@ int pnp(const char *prompt, char *dest, size_t size)
     return strcmp(dest, "q") != 0; // returns one if it's a search term, or 0 if it's q
 }
 
-int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[])
-{
+int handleSearchMenuChoice(SecurityEvent events[], int totalEvents) {
     char target[MAX_EVENT_LENGTH];
     while (1)
     {
+        int searchMenuChoice = SearchMenu();
         switch (searchMenuChoice)
         {
         case 1:
             if (!pnp("\nPlease enter the event type you'd like to search, or q to quit: ", target, sizeof(target)))
                 return 0; // if the user typed q, exit gracefully.
-            printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, eventType, target));
+            printf("\n%d matches found!\n", searchByEventParameter(events, totalEvents, eventType, target));
             break;
 
         case 2:
             if (!pnp("\nPlease enter the IP address you'd like to search, or q to quit: ", target, sizeof(target)))
                 return -1;
-            printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, eventSource, target));
+            printf("\n%d matches found!\n", searchByEventParameter(events, totalEvents, eventSource, target));
             break;
 
         case 3:
             if (!pnp("\nPlease enter the severity level you'd like to search, or q to quit: ", target, sizeof(target)))
                 return -1;
-            printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, severity, target));
+            printf("\n%d matches found!\n", searchByEventParameter(events, totalEvents, severity, target));
             break;
 
         case 4:
             if (!pnp("\nPlease enter the account name you'd like to search, or q to quit: ", target, sizeof(target)))
                 return -1;
-            printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, accountName, target));
+            printf("\n%d matches found!\n", searchByEventParameter(events, totalEvents, accountName, target));
             break;
 
         case 5:
