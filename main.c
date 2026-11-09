@@ -6,9 +6,10 @@
 #include "security_event.h"
 
 /*
-Figure out why it loops infinitely when I type a letter
-Figure out logic for handling menus inside of menus
-Add search functionality
+TO-DO: 
+    1) Add analyze menu
+    2) Add security alerts 
+    3) Add security report generation
 */
 
 int MainMenu(){
