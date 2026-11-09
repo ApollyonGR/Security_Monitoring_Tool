@@ -84,5 +84,6 @@ int AnalyzeMenu(){
 
     printf("\nPlease select option: ");
     scanf("%d", &choice);
+    for (int c; (c = getchar()) != '\n' && c != EOF; );
     return choice;
 }
