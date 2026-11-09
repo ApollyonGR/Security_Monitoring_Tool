@@ -68,30 +68,47 @@ int SearchMenu(){
     return choice;
 }
 
+// shorthand for Print and Prompt, a helper function that handles user input and it's validation
+int pnp (const char *prompt, char *dest, size_t size) {
+    printf("\n%s", prompt);
+    fgets(dest, size, stdin);
+    dest[strcspn(dest, "\n")] = '\0'; // replaces second \n with \0 after fgets
+
+    return strcmp(dest, "q") != 0; // returns one if it's a search term, or 0 if it's q
+}
+
 int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
+    char target[MAX_EVENT_LENGTH];
     while(1){
         switch(searchMenuChoice){
             case 1:
-                printf("\nPlease enter the event type you'd like to search (e.g PORT_SCAN), or type exit to return: ");
-                char target[MAX_EVENT_LENGTH];
-                fgets(target, sizeof(target), stdin);
-                target[strcspn(target, "\n")] = '\0'; // replaces second \n with \0 after fgets
-                if (strcmp(target, "exit") != 0){
-                    printf("\n"); 
-                    searchByEventType(events, MAX_EVENTS, target);
-                    break;
-                } else {
-                    return 0;
-                } 
+                if (!pnp("\nPlease enter the event type you'd like to search, or type q to return: ", target, sizeof(target)))
+                    return -1; // if the pnp function failed, exit gracefully.
+                
+                printf("\n");
+                searchByEventType(events, MAX_EVENTS, target);
+                break;
             case 2:
-                printf("\nYou selected choice 2!\n");
-                break;
+                if (!pnp("\nPlease enter the IP address you'd like to search, or type q to return: ", target, sizeof(target)))
+                    return -1;
+                
+                printf("\n");
+                // searchByEventAddress(events, MAX_EVENTS, target);
+                return 0;
             case 3:
-                printf("\nYou selected choice 3!\n");
-                break;
+                if (!pnp("\nPlease enter the severity level you'd like to search, or type q to return: ", target, sizeof(target)))
+                    return -1;
+                
+                printf("\n");
+                // searchByEventSeverity(events, MAX_EVENTS, target);
+                return 0;
             case 4:
-                printf("\nYou selected choice 4!\n");
-                break;
+                if (!pnp("\nPlease enter the account name you'd like to search, or type q to return: ", target, sizeof(target)))
+                    return -1;
+                
+                printf("\n");
+                // searchByAccountName(events, MAX_EVENTS, target);
+                return 0;
             case 5:
                 printf("\nExiting...\n");
                 return 5;
