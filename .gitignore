@@ -12,3 +12,5 @@
 !security.log
 !README.md
 !build.sh
+!helperFunctions.c
+!helperFunctions.h
