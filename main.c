@@ -14,6 +14,11 @@ Add search functionality
 
 int MainMenu(){
     int choice;
+    
+    printf("=====================================\n"
+           "  CYBR 310 Security Monitoring Tool  \n" 
+           "=====================================\n");
+
     printf( "\n1. Load Security Log"
             "\n2. Display All Events"
             "\n3. Search Events"
@@ -33,10 +38,6 @@ int main(void){
     bool running = true;
     bool fileLoaded = false;
     
-    printf("=====================================\n"
-           "  CYBR 310 Security Monitoring Tool  \n" 
-           "=====================================\n");
-
     while(running == true){
         int mainMenuChoice = MainMenu(); 
         switch(mainMenuChoice){
