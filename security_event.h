@@ -15,15 +15,20 @@ typedef struct {
     int severity;
 } SecurityEvent;
 
+typedef enum {
+    eventType,
+    eventSource,
+    severity,
+    accountName
+} searchValue;
+
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
 
 int SearchMenu();
 int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]);
 
-int searchByEventType(SecurityEvent events[], int count, char target[]);
-int searchByEventSource(SecurityEvent events[], int count, char target[]);
-int searchByEventSeverity(SecurityEvent events[], int count, char target[]);
-int searchByAccountName(SecurityEvent events[], int count, char target[]);
+int searchByEventParameter(SecurityEvent events[], int count, searchValue param, char target[]);
+
 
 #endif 

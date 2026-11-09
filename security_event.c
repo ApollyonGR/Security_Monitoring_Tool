@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "security_event.h"
 
 // Expects pre-validated input, run loadEvents() first.
@@ -82,36 +83,33 @@ int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
     while(1){
         switch(searchMenuChoice){
             case 1:
-                if (!pnp("\nPlease enter the event type you'd like to search, or type q to return: ", target, sizeof(target)))
-                    return -1; // if the pnp function failed, exit gracefully.
-                
-                printf("\n");
-                searchByEventType(events, MAX_EVENTS, target);
+                if (!pnp("\nPlease enter the event type you'd like to search, or q to quit: ", target, sizeof(target)))
+                    return 0; // if the user typed q, exit gracefully.
+                printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, eventType, target));
                 break;
+
             case 2:
-                if (!pnp("\nPlease enter the IP address you'd like to search, or type q to return: ", target, sizeof(target)))
+                if (!pnp("\nPlease enter the IP address you'd like to search, or q to quit: ", target, sizeof(target)))
                     return -1;
-                
-                printf("\n");
-                // searchByEventAddress(events, MAX_EVENTS, target);
-                return 0;
+                printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, eventSource, target));
+                break;
+
             case 3:
-                if (!pnp("\nPlease enter the severity level you'd like to search, or type q to return: ", target, sizeof(target)))
+                if (!pnp("\nPlease enter the severity level you'd like to search, or q to quit: ", target, sizeof(target)))
                     return -1;
-                
-                printf("\n");
-                // searchByEventSeverity(events, MAX_EVENTS, target);
-                return 0;
+                printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, severity, target));
+                break;
+
             case 4:
-                if (!pnp("\nPlease enter the account name you'd like to search, or type q to return: ", target, sizeof(target)))
+                if (!pnp("\nPlease enter the account name you'd like to search, or q to quit: ", target, sizeof(target)))
                     return -1;
-                
-                printf("\n");
-                // searchByAccountName(events, MAX_EVENTS, target);
-                return 0;
+                printf("\n%d matches found!", searchByEventParameter(events, MAX_EVENTS, accountName, target));
+                break;
+
             case 5:
                 printf("\nExiting...\n");
                 return 5;
+                
             default:
                 printf("\nError: Please enter a valid choice\n");
                 break;
@@ -119,7 +117,7 @@ int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
     }
 }
 
-int searchByEventType(SecurityEvent events[], int count, char target[]){
+int searchByEventParameter(SecurityEvent events[], int count, searchValue param, char target[]){
     int matches = 0;
 
     if (target == NULL){
@@ -127,15 +125,41 @@ int searchByEventType(SecurityEvent events[], int count, char target[]){
         return -1;
     }
 
+    int targetSeverity;
+    if (param == severity) targetSeverity = atoi(target); // ASCII to integer 
+
     for (int i = 0; i < count; i++){
-        if (strcmp(events[i].eventType, target) == 0){
-            matches++;
-            printf("Event %d: %s, %s, %s\n", 
-                i, target, events[i].eventSource, events[i].accountName);
+        int matching = 0;
+        if (param == severity) {
+            if (events[i].severity == targetSeverity) {
+                matching = 1;
+            }
+        } else {
+            const char *buff = NULL;
+            switch(param) {
+                case eventType:
+                    buff = events[i].eventType;
+                    break;
+                case eventSource:
+                    buff = events[i].eventSource;
+                    break;
+                case accountName:
+                    buff = events[i].accountName;
+                    break;
+                default:
+                    return -1;
+            }
+
+            if (buff && strcmp(buff, target) == 0){
+                matching = 1;
+            }
         }
-    }
-    if (matches == 0){
-        printf("Match not found, no matching events present or invalid event type\n");
+
+        if (matching){
+            matches++;
+            printf("Event %d: %s, %s, %s, %d\n", 
+                    i, events[i].eventType, events[i].eventSource, events[i].accountName,  events[i].severity);
+        }
     }
     return matches;
 }
