@@ -52,7 +52,7 @@ void displayEvents(SecurityEvent events[], int totalEvents)
     }
 }
 
-int SearchMenu()
+int SearchMenu(void)
 {
     printf("\n==============="
            "\n  Search Menu  "
