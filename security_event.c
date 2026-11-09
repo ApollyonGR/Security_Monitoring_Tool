@@ -62,9 +62,8 @@ int SearchMenu(){
     printf("\nPlease select option: ");
     scanf("%d", &choice);
 
-    // removes the \n from input buffer so fgets() doesn't automatically run the first time
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    // removes first \n before fgets
+    for (int c; (c = getchar()) != '\n' && c != EOF; );
 
     return choice;
 }
@@ -76,14 +75,14 @@ int handleSearchMenuChoice(int searchMenuChoice, SecurityEvent events[]){
                 printf("\nPlease enter the event type you'd like to search (e.g PORT_SCAN), or type exit to return: ");
                 char target[MAX_EVENT_LENGTH];
                 fgets(target, sizeof(target), stdin);
-                target[strcspn(target, "\n")] = '\0';
+                target[strcspn(target, "\n")] = '\0'; // replaces second \n with \0 after fgets
                 if (strcmp(target, "exit") != 0){
-                    printf("\n"); // For ease of reading
+                    printf("\n"); 
                     searchByEventType(events, MAX_EVENTS, target);
                     break;
                 } else {
                     return 0;
-                }
+                } 
             case 2:
                 printf("\nYou selected choice 2!\n");
                 break;
