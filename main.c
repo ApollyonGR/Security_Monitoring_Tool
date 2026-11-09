@@ -28,6 +28,7 @@ int MainMenu(){
 
     printf("\nPlease select option: ");
     scanf("%d", &choice);
+    for (int c; (c = getchar()) != '\n' && c != EOF; );
     return choice;
 }
 
@@ -49,7 +50,7 @@ int main(void){
                 break;
 
             case 2:
-                if (fileLoaded == true) displayEvents(events, MAX_EVENTS);
+                if (fileLoaded == true) displayEvents(events, totalEvents);
                 else printf("\nError: No security log loaded\n");
                 break;
 
@@ -61,15 +62,17 @@ int main(void){
                 break;
 
             case 4: 
-                if (fileLoaded == true) AnalyzeMenu();
-                else printf("\nError: No security log loaded\n");
+                if (fileLoaded == true){
+                    int analyzeMenuChoice = AnalyzeMenu();
+                    // handleAnalyzeMenuChoice(analyzeMenuChoice, events);
+                } else printf("\nError: No security log loaded\n");
                 break;
 
             case 7:
                 printf("\nExiting...\n");
                 running = 0;
                 break;
-                
+
             default:
                 printf("\nError: not valid option\n\n");
                 break;
