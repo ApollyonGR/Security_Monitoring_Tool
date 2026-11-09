@@ -14,8 +14,8 @@ int countCriticalEvents(SecurityEvent events[], int totalEvents);
 int findHighestSeverity(SecurityEvent events[], int totalEvents);
 int countHighestSeverity(SecurityEvent events[], int totalEvents);
 
-void displaySummary(SecurityEvent events[], int totalEvents);
+int handleAnalysisMenu(SecurityEvent events[], int totalEvents);
 
-int AnalyzeMenu();
+int AnalysisMenu(void);
 
 #endif

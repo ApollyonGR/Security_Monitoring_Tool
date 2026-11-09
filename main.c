@@ -4,6 +4,7 @@
 #include "fileio.h"
 #include "analysis.h"
 #include "security_event.h"
+#include "helperFunctions.h"
 
 /*
 TO-DO: 
@@ -29,7 +30,7 @@ int MainMenu(){
 
     printf("\nPlease select option: ");
     scanf("%d", &choice);
-    for (int c; (c = getchar()) != '\n' && c != EOF; );
+    clearStdin();
     return choice;
 }
 
@@ -63,9 +64,10 @@ int main(void){
                 break;
 
             case 4: 
-                if (fileLoaded == 1){
-                    // handleAnalyzeMenu(analyzeMenuChoice, events);
-                } else printf("\nError: No security log loaded\n");
+                if (fileLoaded == 1) handleAnalysisMenu(events, totalEvents);
+                else {
+                    printf("\nError: No security log loaded\n");
+                }
                 break;
 
             case 7:
@@ -80,5 +82,3 @@ int main(void){
     }
     return 0;
 }
-
-// gcc -Wall -Wextra main.c analysis.c fileio.c security_event.c -o main && ./main  

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include "helperFunctions.h"
 #include "security_event.h"
 
 // Expects pre-validated input, run loadEvents() first.
@@ -68,21 +70,8 @@ int SearchMenu(void)
     printf("\nPlease select option: ");
     scanf("%d", &choice);
 
-    // removes first \n before fgets
-    for (int c; (c = getchar()) != '\n' && c != EOF;)
-        ;
-
+    clearStdin();
     return choice;
-}
-
-// shorthand for Print and Prompt, a helper function that handles user input and it's validation
-int pnp(const char *prompt, char *dest, size_t size)
-{
-    printf("\n%s", prompt);
-    fgets(dest, size, stdin);
-    dest[strcspn(dest, "\n")] = '\0'; // replaces second \n with \0 after fgets
-
-    return strcmp(dest, "q") != 0; // returns one if it's a search term, or 0 if it's q
 }
 
 int handleSearchMenu(SecurityEvent events[], int totalEvents) {

@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include "helperFunctions.h"
 #include "security_event.h"
 
 int countEventsByType(SecurityEvent events[], int totalEvents, const char *eventType) {
@@ -67,7 +68,7 @@ int countHighestSeverity(SecurityEvent events[], int totalEvents){
     return count;
 }
 
-int AnalyzeMenu(){
+int AnalysisMenu(void){
     printf("\n================="
            "\n  Analysis Menu  " 
            "\n=================\n");
@@ -84,6 +85,52 @@ int AnalyzeMenu(){
 
     printf("\nPlease select option: ");
     scanf("%d", &choice);
-    for (int c; (c = getchar()) != '\n' && c != EOF; );
+    
+    clearStdin();
     return choice;
+}
+
+int handleAnalysisMenu(SecurityEvent events[], int totalEvents) {
+    while (1)
+    {
+        int analysisMenuChoice = AnalysisMenu();
+        switch (analysisMenuChoice)
+        {
+        case 1:
+            printf("\n%d matches found!\n", countMalwareEvents(events, totalEvents));
+            break;
+
+        case 2:
+            printf("\n%d matches found!\n", countPhishingEvents(events, totalEvents));
+            break;
+
+        case 3:
+            printf("\n%d matches found!\n", countPortScanEvents(events, totalEvents));
+            break;
+
+        case 4:
+            printf("\n%d matches found!\n", countFailedLogins(events, totalEvents));
+            break;
+        
+        case 5:
+            printf("\n%d matches found!\n", countUAEvents(events, totalEvents));
+            break;
+        
+        case 6:
+            printf("\n%d matches found!\n", countCriticalEvents(events, totalEvents));
+            break;
+        
+        case 7:
+            printf("\n%d matches found!\n", countHighestSeverity(events, totalEvents));
+            break;
+
+        case 8:
+            printf("\nExiting...\n");
+            return 5;
+
+        default:
+            printf("\nError: Please enter a valid choice\n");
+            break;
+        }
+    }
 }
