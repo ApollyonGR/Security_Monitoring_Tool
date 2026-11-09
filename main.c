@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #include "fileio.h"
 #include "analysis.h"
@@ -35,10 +34,10 @@ int MainMenu(){
 int main(void){
     SecurityEvent events[MAX_EVENTS];
     int totalEvents = 0;
-    bool running = true;
+    int running = 1;
     bool fileLoaded = false;
     
-    while(running == true){
+    while(running == 1){
         int mainMenuChoice = MainMenu(); 
         switch(mainMenuChoice){
             case 1:
@@ -48,26 +47,29 @@ int main(void){
                     fileLoaded = true;
                 }
                 break;
+
             case 2:
                 if (fileLoaded == true) displayEvents(events, MAX_EVENTS);
-                else printf("Error: No security log loaded\n");
+                else printf("\nError: No security log loaded\n");
                 break;
+
             case 3: 
                 if (fileLoaded == true){
                     int searchMenuChoice = SearchMenu();
                     handleSearchMenuChoice(searchMenuChoice, events);
-                } else {
-                    printf("Error: No security log loaded\n");
-                }
+                } else printf("\nError: No security log loaded\n");
                 break;
+
             case 4: 
                 if (fileLoaded == true) AnalyzeMenu();
-                else printf("Error: No security log loaded\n");
+                else printf("\nError: No security log loaded\n");
                 break;
+
             case 7:
                 printf("\nExiting...\n");
-                running = false;
+                running = 0;
                 break;
+                
             default:
                 printf("\nError: not valid option\n\n");
                 break;
