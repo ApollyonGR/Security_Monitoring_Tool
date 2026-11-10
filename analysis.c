@@ -78,31 +78,31 @@ int handleAnalysisMenu(SecurityEvent events[], int totalEvents) {
         switch (analysisMenuChoice)
         {
         case 1:
-            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "MALWARE"));
+            printf("\n%d Malware events found!\n", countEventsByParameter(events, totalEvents, "MALWARE"));
             break;
 
         case 2:
-            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "PHISHING"));
+            printf("\n%d Phishing events found!\n", countEventsByParameter(events, totalEvents, "PHISHING"));
             break;
 
         case 3:
-            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
+            printf("\n%d Port Scan events found!\n", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
             break;
 
         case 4:
-            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
+            printf("\n%d Failed Login events found!\n", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
             break;
         
         case 5:
-            printf("\n%d matches found!\n", countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS"));
+            printf("\n%d Unauthorized Access events found!\n", countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS"));
             break;
         
         case 6:
-            printf("\n%d matches found!\n", countCriticalEvents(events, totalEvents));
+            printf("\n%d Critical events found!\n", countCriticalEvents(events, totalEvents));
             break;
         
         case 7:
-            printf("\n%d matches found!\n", countHighestSeverity(events, totalEvents));
+            printf("\n%d Events with a Severity of %d found!\n", countHighestSeverity(events, totalEvents), findHighestSeverity(events, totalEvents));
             break;
 
         case 8:
