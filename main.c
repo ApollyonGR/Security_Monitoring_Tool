@@ -64,7 +64,7 @@ int main(void){
                 break;
 
             case 4: 
-                if (fileLoaded == 1) handleAnalysisMenu(events, totalEvents);
+                if (fileLoaded == 1) displayAnalysisMenu(events, totalEvents);
                 else {
                     printf("\nError: No security log loaded\n");
                 }

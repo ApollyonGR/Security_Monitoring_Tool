@@ -49,69 +49,19 @@ int countHighestSeverity(SecurityEvent events[], int totalEvents){
     return count;
 }
 
-int AnalysisMenu(void){
-    printf("\n================="
-           "\n  Analysis Menu  " 
-           "\n=================\n");
-           
-    int choice;
-    printf( "\n1. Count Malware Incidents"
-            "\n2. Count Phishing Incidents"
-            "\n3. Count Port Scan Incidents"
-            "\n4. Count Failed Login Incidents"
-            "\n5. Count Unauthorized Access Incidents"
-            "\n6. Count Total Critical Events"
-            "\n7. Count Highest Severity Events"
-            "\n8. Main Menu\n");
-
-    printf("\nPlease select option: ");
-    scanf("%d", &choice);
+int displayAnalysisMenu(SecurityEvent events[], int totalEvents){
+    printf( "\n=========================="
+            "\n  Security Event Summary  " 
+            "\n==========================\n");
     
-    clearStdin();
-    return choice;
+    printf("\nTotal Events: %d", totalEvents);
+    printf("\nSuccessful Logins: 0");
+    printf("\nFailed Logins: %d", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
+    printf("\nMalware Events: %d", countEventsByParameter(events, totalEvents, "MALWARE"));
+    printf("\nPhishing Events: %d", countEventsByParameter(events, totalEvents, "PHISHING"));
+    printf("\nPort Scan Events: %d", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
+    printf("\nUnauthorized Access Events: %d\n", countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS"));
+    
+    return 0;
 }
 
-int handleAnalysisMenu(SecurityEvent events[], int totalEvents) {
-    while (1)
-    {
-        int analysisMenuChoice = AnalysisMenu();
-        switch (analysisMenuChoice)
-        {
-        case 1:
-            printf("\n%d Malware events found!\n", countEventsByParameter(events, totalEvents, "MALWARE"));
-            break;
-
-        case 2:
-            printf("\n%d Phishing events found!\n", countEventsByParameter(events, totalEvents, "PHISHING"));
-            break;
-
-        case 3:
-            printf("\n%d Port Scan events found!\n", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
-            break;
-
-        case 4:
-            printf("\n%d Failed Login events found!\n", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
-            break;
-        
-        case 5:
-            printf("\n%d Unauthorized Access events found!\n", countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS"));
-            break;
-        
-        case 6:
-            printf("\n%d Critical events found!\n", countCriticalEvents(events, totalEvents));
-            break;
-        
-        case 7:
-            printf("\n%d Events with a Severity of %d found!\n", countHighestSeverity(events, totalEvents), findHighestSeverity(events, totalEvents));
-            break;
-
-        case 8:
-            printf("\nExiting...\n");
-            return 5;
-
-        default:
-            printf("\nError: Please enter a valid choice\n");
-            break;
-        }
-    }
-}
