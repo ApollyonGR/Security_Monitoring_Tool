@@ -8,9 +8,8 @@
 
 /*
 TO-DO: 
-    1) Add analyze menu
-    2) Add security alerts 
-    3) Add security report generation
+    1) Add security alerts 
+    2) Add security report generation
 */
 
 int MainMenu(){
@@ -66,6 +65,15 @@ int main(void){
             case 4: 
                 if (fileLoaded == 1) displayAnalysisMenu(events, totalEvents);
                 else {
+                    printf("\nError: No security log loaded\n");
+                }
+                break;
+
+            case 5:
+                if (fileLoaded == 1){
+                    populateSecurityAlerts(events, totalEvents);
+                    displaySecurityAlerts(events, totalEvents);
+                } else {
                     printf("\nError: No security log loaded\n");
                 }
                 break;
