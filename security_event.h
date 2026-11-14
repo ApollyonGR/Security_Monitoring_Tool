@@ -5,7 +5,7 @@
 #define MAX_EVENT_LENGTH 25
 #define MAX_USERNAME_LENGTH 10
 #define MAX_IP_ADDRESS_LENGTH 16
-#define CRITICAL_THRESHOLD 9
+#define CRITICAL_THRESHOLD 5
 #define LOG_RELATIVE_FILEPATH "security.log"
 
 typedef struct {
@@ -23,8 +23,16 @@ typedef enum {
     accountName
 } searchValue;
 
+// Bools for if an alert should be displayed, initialized to off. 
+extern int failedLoginAlert;
+extern int malwareAlert;
+extern int phishingAlert;
+extern int portScanAlert;
+extern int UnAuthAlert;
+
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
+void displaySecurityAlerts(SecurityEvent events[], int totalEvents);
 
 int SearchMenu(void);
 int handleSearchMenu(SecurityEvent events[], int totalEvents);
