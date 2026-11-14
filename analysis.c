@@ -49,6 +49,16 @@ int countHighestSeverity(SecurityEvent events[], int totalEvents){
     return count;
 }
 
+int populateSecurityAlerts(SecurityEvent events[], int totalEvents){
+    if (countEventsByParameter(events, totalEvents, "FAILED_LOGIN") >= 10) failedLoginAlert = 1;
+    if (countEventsByParameter(events, totalEvents, "MALWARE") >= 10) malwareAlert = 1;
+    if (countEventsByParameter(events, totalEvents, "PHISHING") >= 10) phishingAlert = 1;
+    if (countEventsByParameter(events, totalEvents, "PORT_SCAN") >= 10) portScanAlert = 1;
+    if (countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS") >= 10) UnAuthAlert = 1;
+
+    return 0;
+}
+
 int displayAnalysisMenu(SecurityEvent events[], int totalEvents){
     printf( "\n=========================="
             "\n  Security Event Summary  " 
