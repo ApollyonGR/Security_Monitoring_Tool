@@ -5,6 +5,12 @@
 #include "helperFunctions.h"
 #include "security_event.h"
 
+int failedLoginAlert = 0;
+int malwareAlert = 0;
+int phishingAlert = 0;
+int portScanAlert = 0;
+int UnAuthAlert = 0;
+
 // Expects pre-validated input, run loadEvents() first.
 void displayEvent(int i, SecurityEvent events[])
 {
@@ -54,6 +60,19 @@ void displayEvents(SecurityEvent events[], int totalEvents)
     }
 }
 
+void displaySecurityAlerts(SecurityEvent events[], int totalEvents) {
+    
+    printf("\n==================="
+           "\n  Security Alerts  "
+           "\n===================\n");
+ 
+    if (failedLoginAlert == 1) printf("\nFailed Login Alert");
+    if (malwareAlert == 1) printf("\nMalware Alert");
+    if (phishingAlert == 1) printf("\nPhishing Alert");
+    if (portScanAlert == 1) printf("\nPort Scan Alert");
+    if (UnAuthAlert == 1) printf("\nUnauthorized Access Alert\n");
+
+}
 int SearchMenu(void)
 {
     printf("\n==============="
