@@ -25,6 +25,8 @@ typedef enum {
 
 // Bools for if an alert should be displayed, initialized to off. 
 extern int failedLoginAlert;
+extern char failedLoginAddress[MAX_IP_ADDRESS_LENGTH];
+extern int failedLoginAddressCount;
 extern int malwareAlert;
 extern int phishingAlert;
 extern int portScanAlert;

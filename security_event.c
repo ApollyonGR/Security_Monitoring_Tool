@@ -6,6 +6,8 @@
 #include "security_event.h"
 
 int failedLoginAlert = 0;
+char failedLoginAddress[MAX_IP_ADDRESS_LENGTH] = "";
+int failedLoginAddressCount = 0;
 int malwareAlert = 0;
 int phishingAlert = 0;
 int portScanAlert = 0;
@@ -66,13 +68,21 @@ void displaySecurityAlerts(SecurityEvent events[], int totalEvents) {
            "\n  Security Alerts  "
            "\n===================\n");
  
-    if (failedLoginAlert == 1) printf("\nFailed Login Alert");
+    if (failedLoginAlert == 1){ 
+        printf("\n**********************"
+               "\n  Failed Login Alert  "
+               "\n**********************"
+               "\nProblem  IP Address: %s"
+               "\nTotal Failed Logins: %d\n",
+               failedLoginAddress, failedLoginAddressCount);
+    }
     if (malwareAlert == 1) printf("\nMalware Alert");
     if (phishingAlert == 1) printf("\nPhishing Alert");
     if (portScanAlert == 1) printf("\nPort Scan Alert");
     if (UnAuthAlert == 1) printf("\nUnauthorized Access Alert\n");
 
 }
+
 int SearchMenu(void)
 {
     printf("\n==============="
