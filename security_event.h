@@ -34,7 +34,7 @@ extern int UnAuthAlert;
 
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(SecurityEvent events[], int totalEvents);
-void displaySecurityAlerts(SecurityEvent events[], int totalEvents);
+void displaySecurityAlerts();
 
 int SearchMenu(void);
 int handleSearchMenu(SecurityEvent events[], int totalEvents);

@@ -62,7 +62,7 @@ void displayEvents(SecurityEvent events[], int totalEvents)
     }
 }
 
-void displaySecurityAlerts(SecurityEvent events[], int totalEvents) {
+void displaySecurityAlerts() {
     
     printf("\n==================="
            "\n  Security Alerts  "

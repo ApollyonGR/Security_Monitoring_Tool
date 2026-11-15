@@ -72,7 +72,7 @@ int main(void){
             case 5:
                 if (fileLoaded == 1){
                     populateSecurityAlerts(events, totalEvents);
-                    displaySecurityAlerts(events, totalEvents);
+                    displaySecurityAlerts();
                 } else {
                     printf("\nError: No security log loaded\n");
                 }
