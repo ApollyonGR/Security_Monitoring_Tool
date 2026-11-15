@@ -8,9 +8,13 @@
 int failedLoginAlert = 0;
 char failedLoginAddress[MAX_IP_ADDRESS_LENGTH] = "";
 int failedLoginAddressCount = 0;
+
+int portScanAlert = 0;
+char portScanAddress[MAX_IP_ADDRESS_LENGTH] = "";
+int portScanAddressCount = 0;
+
 int malwareAlert = 0;
 int phishingAlert = 0;
-int portScanAlert = 0;
 int UnAuthAlert = 0;
 
 // Expects pre-validated input, run loadEvents() first.
@@ -76,9 +80,18 @@ void displaySecurityAlerts() {
                "\nTotal Failed Logins: %d\n",
                failedLoginAddress, failedLoginAddressCount);
     }
+
+    if (portScanAlert == 1) {
+        printf("\n*******************"
+               "\n  Port Scan Alert  "
+               "\n*******************"
+               "\nProblem  IP Address: %s"
+               "\nTotal Port Scans: %d\n",
+               portScanAddress, portScanAddressCount);
+    }
+    
     if (malwareAlert == 1) printf("\nMalware Alert");
     if (phishingAlert == 1) printf("\nPhishing Alert");
-    if (portScanAlert == 1) printf("\nPort Scan Alert");
     if (UnAuthAlert == 1) printf("\nUnauthorized Access Alert\n");
 
 }

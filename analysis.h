@@ -10,6 +10,7 @@ int findHighestSeverity(SecurityEvent events[], int totalEvents);
 int countHighestSeverity(SecurityEvent events[], int totalEvents);
 
 int checkFailedLogins (SecurityEvent events[], int totalEvents);
+int checkPortScans (SecurityEvent events[], int totalEvents);
 
 int populateSecurityAlerts(SecurityEvent events[], int totalEvents);
 int displayAnalysisMenu(SecurityEvent events[], int totalEvents);

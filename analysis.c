@@ -80,16 +80,37 @@ int checkFailedLogins (SecurityEvent events[], int totalEvents){
     return 0;
 }
 
+int checkPortScans (SecurityEvent events[], int totalEvents){
+    int threshold = 5;
+    for (int i = 0; i < totalEvents; i++){
+        if (strcmp(events[i].eventType, "PORT_SCAN") == 0){
+            int count = 0;
+            for (int j = 0; j < totalEvents; j++){
+                if (strcmp(events[j].eventType, "PORT_SCAN") == 0 &&
+                    strcmp(events[j].eventSource, events[i].eventSource) == 0){
+                        count++;
+                }
+            }
+            if (count >= threshold){
+                portScanAlert = 1;
+                strcpy(portScanAddress, events[i].eventSource);
+                portScanAddressCount = count;
+                return 1;
+            }
+        }
+    }
+
+    portScanAlert = 0;
+    return 0;
+}
+
 int populateSecurityAlerts(SecurityEvent events[], int totalEvents){
     
     checkFailedLogins(events, totalEvents);
+    checkPortScans(events, totalEvents);
 
     if (countEventsByParameter(events, totalEvents, "MALWARE") >= 10) malwareAlert = 1;
     if (countEventsByParameter(events, totalEvents, "PHISHING") >= 10) phishingAlert = 1;
-    
-    // Figure out how to check if the port scan attempts cam from one address.
-    if (countEventsByParameter(events, totalEvents, "PORT_SCAN") >= 10) portScanAlert = 1;
-
     if (countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS") >= 10) UnAuthAlert = 1;
 
     return 0;

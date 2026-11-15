@@ -27,9 +27,13 @@ typedef enum {
 extern int failedLoginAlert;
 extern char failedLoginAddress[MAX_IP_ADDRESS_LENGTH];
 extern int failedLoginAddressCount;
+
+extern int portScanAlert;
+extern char portScanAddress[MAX_IP_ADDRESS_LENGTH];
+extern int portScanAddressCount;
+
 extern int malwareAlert;
 extern int phishingAlert;
-extern int portScanAlert;
 extern int UnAuthAlert;
 
 void displayEvent(int i, SecurityEvent events[]);
