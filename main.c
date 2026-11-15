@@ -8,7 +8,12 @@
 
 /*
 TO-DO: 
-    1) Add security alerts 
+    1) Add security alerts for 
+        a) Failed Login (DONE)
+        b) Malware
+        c) Phishing(?)
+        d) Port Scan
+        e) Unauthorized Access 
     2) Add security report generation
 */
 
