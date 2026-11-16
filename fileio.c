@@ -24,3 +24,16 @@ int loadEvents(const char *filename, SecurityEvent events[], int totalEvents){
     fclose(fptr);
     return i; // returns the total number of events loaded for use in main.c
 }
+
+int generateReport(const char *filename, SecurityEvent events[], int count){
+    FILE *fptr = fopen(filename, "w");
+
+    if (fptr == NULL){
+        printf("The file failed to open.\n");
+        return -1;
+    }
+
+    displayEvents(fptr, events, count);
+    fclose(fptr);
+    return 0;
+}
