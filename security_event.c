@@ -29,7 +29,7 @@ void displayEvent(int i, SecurityEvent events[])
            events[i].accountName, events[i].severity);
 }
 
-void displayEvents(SecurityEvent events[], int totalEvents)
+void displayEvents(FILE *stream, SecurityEvent events[], int totalEvents)
 {
     // Defining column headers
     const char *h1 = "ID";
@@ -45,19 +45,19 @@ void displayEvents(SecurityEvent events[], int totalEvents)
     int w4 = 14;
 
     // Printing the header
-    printf("\n%-*s%-*s%-*s%-*s%s\n",
+    fprintf(stream, "\n%-*s%-*s%-*s%-*s%s\n",
            w1, h1, w2, h2, w3, h3, w4, h4, h5);
 
     // Printing a dashed line who's size changes dynamically
     int totalWidth = w1 + w2 + w3 + w4 + (int)strlen(h5);
     for (int i = 0; i < totalWidth; i++)
-        printf("-");
-    printf("\n");
+        fprintf(stream, "-");
+    fprintf(stream, "\n");
 
     // Printing rows
     for (int i = 0; i < totalEvents; i++)
     {
-        printf("%-*d%-*s%-*s%-*s%d\n",
+        fprintf(stream, "%-*d%-*s%-*s%-*s%d\n",
                w1, events[i].id,
                w2, events[i].eventType,
                w3, events[i].eventSource,
@@ -213,6 +213,6 @@ int searchByEventParameter(SecurityEvent events[], int count, searchValue param,
             matches++;
         }
     }
-    if (matches != 0) displayEvents(matchingEvents, matches);
+    if (matches != 0) displayEvents(stdout, matchingEvents, matches);
     return matches;
 }

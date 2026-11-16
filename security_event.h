@@ -37,7 +37,7 @@ extern int phishingAlert;
 extern int UnAuthAlert;
 
 void displayEvent(int i, SecurityEvent events[]);
-void displayEvents(SecurityEvent events[], int totalEvents);
+void displayEvents(FILE *stream, SecurityEvent events[], int totalEvents);
 void displaySecurityAlerts();
 
 int SearchMenu(void);
