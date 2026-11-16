@@ -12,7 +12,7 @@ TO-DO:
         a) Failed Login (DONE)
         b) Malware
         c) Phishing(?)
-        d) Port Scan
+        d) Port Scan (DONE)
         e) Unauthorized Access 
     2) Add security report generation
 */
@@ -56,7 +56,7 @@ int main(void){
                 break;
 
             case 2:
-                if (fileLoaded == 1) displayEvents(events, totalEvents);
+                if (fileLoaded == 1) displayEvents(stdout, events, totalEvents);
                 else printf("\nError: No security log loaded\n");
                 break;
 
@@ -82,7 +82,15 @@ int main(void){
                     printf("\nError: No security log loaded\n");
                 }
                 break;
-
+            
+            case 6:
+                if (fileLoaded == 1){
+                    generateReport("report.txt", events, MAX_EVENTS);
+                } else {
+                    printf("\nError: No security log loaded\n");
+                }
+                break;
+                
             case 7:
                 printf("\nExiting...\n");
                 running = 0;
