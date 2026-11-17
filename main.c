@@ -14,7 +14,8 @@ TO-DO:
         c) Phishing(?)
         d) Port Scan (DONE)
         e) Unauthorized Access 
-    2) Add security report generation
+    2) Flesh out security report generation
+    3) Add functionality for custom log files
 */
 
 int MainMenu(){
