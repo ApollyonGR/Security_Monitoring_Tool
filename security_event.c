@@ -160,13 +160,13 @@ int handleSearchMenu(SecurityEvent events[], int totalEvents) {
 
 int searchByEventParameter(SecurityEvent events[], int count, searchValue param, char target[])
 {
-
     if (target == NULL)
     {
         printf("\nError: Invalid event type\n");
         return -1;
     }
 
+    // New SecurityEvent array for clean display with displayEvents
     SecurityEvent matchingEvents[count];
     int matches = 0;
     int targetSeverity = 0;
@@ -176,12 +176,12 @@ int searchByEventParameter(SecurityEvent events[], int count, searchValue param,
     for (int i = 0; i < count; i++)
     {
         int matching = 0;
-        if (param == severity)
+        if (param == severity) // If the search parameter is severity (int)
         {
             if (events[i].severity == targetSeverity) {
                 matching = 1;
             }
-        } else {
+        } else { // If the search parameter is any other event parameter (char)
             const char *buff = NULL;
             switch (param)
             {
@@ -203,7 +203,8 @@ int searchByEventParameter(SecurityEvent events[], int count, searchValue param,
                 matching = 1;
             }
         }
-
+        
+        // If matching, copy events[] event into matchingEvents[] event
         if (matching) {
             matchingEvents[matches].id = events[i].id;
             strcpy(matchingEvents[matches].eventType, events[i].eventType);
