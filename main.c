@@ -40,8 +40,9 @@ int MainMenu(){
 }
 
 int main(void){
-    SecurityEvent events[MAX_EVENTS];
+    SecurityEvent *events = NULL;
     int totalEvents = 0;
+    int capacity = 0;
     int running = 1;
     int fileLoaded = 0;
     
@@ -49,7 +50,7 @@ int main(void){
         int mainMenuChoice = MainMenu(); 
         switch(mainMenuChoice){
             case 1:
-                totalEvents = loadEvents(LOG_RELATIVE_FILEPATH, events, MAX_EVENTS);
+                totalEvents = loadEvents(LOG_RELATIVE_FILEPATH, &events, &capacity);
                 if (totalEvents != -1){
                     printf("\n%d event(s) loaded!\n", totalEvents);
                     fileLoaded = 1;
@@ -86,7 +87,7 @@ int main(void){
             
             case 6:
                 if (fileLoaded == 1){
-                    generateReport("report.txt", events, MAX_EVENTS);
+                    generateReport("report.txt", events, totalEvents);
                 } else {
                     printf("\nError: No security log loaded\n");
                 }
@@ -94,6 +95,8 @@ int main(void){
                 
             case 7:
                 printf("\nExiting...\n");
+                free(events);
+                events = NULL;
                 running = 0;
                 break;
 
