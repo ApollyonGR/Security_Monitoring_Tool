@@ -122,8 +122,8 @@ int displayAnalysisMenu(SecurityEvent events[], int totalEvents){
             "\n==========================\n");
     
     printf("\nTotal Events: %d", totalEvents);
-    printf("\nSuccessful Logins: 0");
     printf("\nFailed Logins: %d", countEventsByParameter(events, totalEvents, "FAILED_LOGIN"));
+    printf("\nSuccessful Logins: %d", countEventsByParameter(events, totalEvents, "SUCCESSFUL_LOGIN"));
     printf("\nMalware Events: %d", countEventsByParameter(events, totalEvents, "MALWARE"));
     printf("\nPhishing Events: %d", countEventsByParameter(events, totalEvents, "PHISHING"));
     printf("\nPort Scan Events: %d", countEventsByParameter(events, totalEvents, "PORT_SCAN"));
