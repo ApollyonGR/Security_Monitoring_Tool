@@ -53,11 +53,11 @@ int checkFailedLogins (SecurityEvent events[], int totalEvents){
     int threshold = 5;
 
     // Outer loop scans for any event with a FAILED_LOGIN type
-    // Once one is found, inner loop RESCANS every event, checking if any
+    // Once one is found, inner loop RE-SCANS every event, checking if any
     // other events match that events IP Address and event type.
     // Once the inner loop is finished, if the count variable is equal to
     // or above the threshold, it copies the problem address into 
-    // the extern char buffer, alongisde the failed login count, and returns. 
+    // the extern char buffer, alongside the failed login count, and returns. 
     for (int i = 0; i < totalEvents; i++){
         if (strcmp(events[i].eventType, "FAILED_LOGIN") == 0){
             int count = 0;
