@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "security_event.h"
+#include "analysis.h"
 
 
 int loadEvents(const char *filename, SecurityEvent **eventsPtr, int *capacityPtr){ 
@@ -62,13 +63,16 @@ int loadEvents(const char *filename, SecurityEvent **eventsPtr, int *capacityPtr
 
 int generateReport(const char *filename, SecurityEvent events[], int count){
     FILE *fptr = fopen(filename, "w");
-
     if (fptr == NULL){
         printf("The file failed to open.\n");
         return -1;
     }
 
     displayEvents(fptr, events, count);
+    displayAnalysisMenu(fptr, events, count);
+    populateSecurityAlerts(events, count);
+    displaySecurityAlerts(fptr);
+
     fclose(fptr);
     return 0;
 }
