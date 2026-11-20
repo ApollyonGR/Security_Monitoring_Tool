@@ -66,7 +66,7 @@ void displayEvents(FILE *stream, SecurityEvent events[], int totalEvents)
     }
 }
 
-void displaySecurityAlerts() {
+void displaySecurityAlerts(FILE *stream) {
     
     printf("\n==================="
            "\n  Security Alerts  "

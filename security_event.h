@@ -37,7 +37,7 @@ extern int portScanAddressCount;
 
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(FILE *stream, SecurityEvent events[], int totalEvents);
-void displaySecurityAlerts();
+void displaySecurityAlerts(FILE *stream);
 
 int SearchMenu(void);
 int handleSearchMenu(SecurityEvent events[], int totalEvents);
