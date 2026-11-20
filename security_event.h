@@ -5,7 +5,7 @@
 #define MAX_USERNAME_LENGTH 10
 #define MAX_IP_ADDRESS_LENGTH 16
 #define CRITICAL_THRESHOLD 5
-#define LOG_RELATIVE_FILEPATH "security.log"
+#define LOG_RELATIVE_FILEPATH "logs/"
 
 typedef struct {
     int id;
