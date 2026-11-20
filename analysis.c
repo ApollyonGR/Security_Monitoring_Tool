@@ -116,7 +116,7 @@ int populateSecurityAlerts(SecurityEvent events[], int totalEvents){
     return 0;
 }
 
-int displayAnalysisMenu(SecurityEvent events[], int totalEvents){
+int displayAnalysisMenu(FILE *stream, SecurityEvent events[], int totalEvents){
     printf( "\n=========================="
             "\n  Security Event Summary  " 
             "\n==========================\n");

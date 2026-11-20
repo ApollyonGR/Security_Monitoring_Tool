@@ -13,6 +13,6 @@ int checkFailedLogins (SecurityEvent events[], int totalEvents);
 int checkPortScans (SecurityEvent events[], int totalEvents);
 
 int populateSecurityAlerts(SecurityEvent events[], int totalEvents);
-int displayAnalysisMenu(SecurityEvent events[], int totalEvents);
+int displayAnalysisMenu(FILE *stream, SecurityEvent events[], int totalEvents);
 
 #endif
