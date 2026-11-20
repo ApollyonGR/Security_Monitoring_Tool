@@ -17,17 +17,13 @@ TO-DO:
         d) Port Scan (DONE)
         e) Unauthorized Access 
     2) Flesh out security report generation
-    3) Add functionality for custom log files
-        a) Function to display available log files
-        b) change the "Load Security Log" case to accept a log name
-        c) change loadEvents to use that logname and return -1 if it doesn't exist
 */
 int logMenu(){
     struct dirent *de;  
     DIR *dr = opendir("./logs/");
 
     if (dr == NULL){
-        printf("Could not open current directory" );
+        printf("\nCould not open the logs directory\n" );
         return -1; }
 
     printf("\n");
@@ -79,7 +75,14 @@ int main(void){
                 break;
 
             case 2:
-                totalEvents = loadEvents(LOG_RELATIVE_FILEPATH, &events, &capacity);
+                char logBuf[50];
+                char logPath[100];
+                if (!pnp("\nPlease enter the log you'd like to load, or q to quit: ", logBuf, sizeof(logBuf)))
+                    break;
+
+                snprintf(logPath, sizeof(logPath), LOG_RELATIVE_FILEPATH "%s", logBuf);
+                totalEvents = loadEvents(logPath, &events, &capacity);
+
                 if (totalEvents != -1){
                     printf("\n%d event(s) loaded!\n", totalEvents);
                     fileLoaded = 1;
