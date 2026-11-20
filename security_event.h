@@ -31,9 +31,9 @@ extern int portScanAlert;
 extern char portScanAddress[MAX_IP_ADDRESS_LENGTH];
 extern int portScanAddressCount;
 
-extern int malwareAlert;
-extern int phishingAlert;
-extern int UnAuthAlert;
+// extern int malwareAlert;
+// extern int phishingAlert;
+// extern int UnAuthAlert;
 
 void displayEvent(int i, SecurityEvent events[]);
 void displayEvents(FILE *stream, SecurityEvent events[], int totalEvents);

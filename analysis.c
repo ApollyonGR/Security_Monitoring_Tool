@@ -109,9 +109,9 @@ int populateSecurityAlerts(SecurityEvent events[], int totalEvents){
     checkFailedLogins(events, totalEvents);
     checkPortScans(events, totalEvents);
 
-    if (countEventsByParameter(events, totalEvents, "MALWARE") >= 10) malwareAlert = 1;
-    if (countEventsByParameter(events, totalEvents, "PHISHING") >= 10) phishingAlert = 1;
-    if (countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS") >= 10) UnAuthAlert = 1;
+    // if (countEventsByParameter(events, totalEvents, "MALWARE") >= 10) malwareAlert = 1;
+    // if (countEventsByParameter(events, totalEvents, "PHISHING") >= 10) phishingAlert = 1;
+    // if (countEventsByParameter(events, totalEvents, "UNAUTHORIZED_ACCESS") >= 10) UnAuthAlert = 1;
 
     return 0;
 }

@@ -90,9 +90,9 @@ void displaySecurityAlerts() {
                portScanAddress, portScanAddressCount);
     }
     
-    if (malwareAlert == 1) printf("\nMalware Alert");
-    if (phishingAlert == 1) printf("\nPhishing Alert");
-    if (UnAuthAlert == 1) printf("\nUnauthorized Access Alert\n");
+    // if (malwareAlert == 1) printf("\nMalware Alert");
+    // if (phishingAlert == 1) printf("\nPhishing Alert");
+    // if (UnAuthAlert == 1) printf("\nUnauthorized Access Alert\n");
 
 }
 
