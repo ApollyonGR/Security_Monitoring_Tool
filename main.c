@@ -18,6 +18,7 @@ TO-DO:
         e) Unauthorized Access 
     2) Flesh out security report generation
 */
+
 int logMenu(){
     struct dirent *de;  
     DIR *dr = opendir("./logs/");
@@ -104,7 +105,7 @@ int main(void){
                 break;
 
             case 5: 
-                if (fileLoaded == 1) displayAnalysisMenu(events, totalEvents);
+                if (fileLoaded == 1) displayAnalysisMenu(stdout, events, totalEvents);
                 else {
                     printf("\nError: No security log loaded\n");
                 }
@@ -113,7 +114,7 @@ int main(void){
             case 6:
                 if (fileLoaded == 1){
                     populateSecurityAlerts(events, totalEvents);
-                    displaySecurityAlerts();
+                    displaySecurityAlerts(stdout);
                 } else {
                     printf("\nError: No security log loaded\n");
                 }
