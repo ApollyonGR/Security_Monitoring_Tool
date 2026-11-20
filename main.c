@@ -22,6 +22,25 @@ TO-DO:
         b) change the "Load Security Log" case to accept a log name
         c) change loadEvents to use that logname and return -1 if it doesn't exist
 */
+int logMenu(){
+    struct dirent *de;  
+    DIR *dr = opendir("./logs/");
+
+    if (dr == NULL){
+        printf("Could not open current directory" );
+        return -1; }
+
+    printf("\n");
+    while ((de = readdir(dr)) != NULL){
+        if (strcmp(de->d_name, ".") == 0 || strcmp(de->d_name, "..") == 0){
+            continue;
+        }
+        printf("%s\n", de->d_name);
+    }
+
+    closedir(dr);
+    return 0;
+}
 
 int MainMenu(){
     int choice;
@@ -56,22 +75,7 @@ int main(void){
         int mainMenuChoice = MainMenu(); 
         switch(mainMenuChoice){
             case 1:
-                struct dirent *de;  
-                DIR *dr = opendir("./logs/");
-
-                if (dr == NULL){
-                    printf("Could not open current directory" );
-                    return 0; }
-
-                printf("\n");
-                while ((de = readdir(dr)) != NULL){
-                    if (strcmp(de->d_name, ".") == 0 || strcmp(de->d_name, "..") == 0){
-                        continue;
-                    }
-                    printf("%s\n", de->d_name);
-                }
-
-                closedir(dr);
+                logMenu();
                 break;
 
             case 2:
